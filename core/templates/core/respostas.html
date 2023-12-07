@@ -74,7 +74,14 @@
       </section>
       
       <h2>Questão H</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for livro in livros_resumo_longo %}
+            <li>{{ livro.title }} ({{ livro.qtde_palavras }})</li>
+          {% endfor %}
+          <li>Não há nenhum livro com resumo de mais de 150 palavras.</li>
+        </ol>
+      </section>
       
       <h2>Questão I</h2>
       <section></section>

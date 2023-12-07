@@ -44,11 +44,18 @@ def respostas_exercicio(request):
 
     autores_numero_livros_ordem = Author.objects.annotate(qtde_livros=Count('books')).order_by('-qtde_livros')
 
+    livros = Book.objects.all()
+    livros_resumo_longo = []
+    for livro in livros:
+        palavras = livro.summary.split(' ')
+        if len(palavras) > 150:
+            livros_resumo_longo.append({ "title": livro.title, "qtde_palavras": len(palavras) })
 
     context = { "livros_por_autor": livros_por_autor, 
                "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
                 "livros_com_avaliacoes_altas": livors_com_avaliacoes_altas,
                 "usuarios_com_website_especifico": usuarios_com_website_especifico,
                 "livros_sem_avaliacoes": livros_sem_avaliacoes,
-                 "autores_numero_livros_ordem": autores_numero_livros_ordem }
+                 "autores_numero_livros_ordem": autores_numero_livros_ordem,
+                  "livros_resumo_longo": livros_resumo_longo }
     return render(request, 'core/respostas.html', context)
