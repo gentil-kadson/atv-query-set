@@ -30,14 +30,20 @@
       <h2>Questão C</h2>
       <section>
         <ol>
-          {% for autor in authors_with_specific_words_on_biography %}
+          {% for autor in autores_com_palavra_especifica_bio %}
             <li>{{ autor.name }}: {{ autor.bio }}</li>
           {% endfor %}
         </ol>
       </section>
 
       <h2>Questão D</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for livro in livros_com_avaliacoes_altas %}
+            <li>{{ livro.title }}</li>
+          {% endfor %}
+        </ol>
+      </section>
       
       <h2>Questão E</h2>
       <section></section>

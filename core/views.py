@@ -33,8 +33,11 @@ def respostas_exercicio(request):
 
     livros_com_tag_especifica = Book.objects.filter(tags__name='Ciência')
 
-    authors_with_specific_words_on_biography = Author.objects.filter(bio__icontains='Aliquam')
+    autores_com_palavra_especifica_bio = Author.objects.filter(bio__icontains='Aliquam')
+
+    livors_com_avaliacoes_altas = Book.objects.filter(reviews__rating__gte=4)
 
     context = { "livros_por_autor": livros_por_autor, 
-               "livros_com_tag_especifica": livros_com_tag_especifica, "authors_with_specific_words_on_biography": authors_with_specific_words_on_biography }
+               "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
+                "livros_com_avaliacoes_altas": livors_com_avaliacoes_altas }
     return render(request, 'core/respostas.html', context)
