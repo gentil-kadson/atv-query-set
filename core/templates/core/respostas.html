@@ -84,7 +84,13 @@
       </section>
       
       <h2>Questão I</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for avaliacao in avaliacoes_livro_autor_especifico %}
+            <li>{{ avaliacao.book.title }} ({{ avaliacao.book.author.name }}): {{ avaliacao.review_text }}</li>
+          {% endfor %}
+        </ol>
+      </section>
       
       <h2>Questão J</h2>
       <section></section>
