@@ -46,10 +46,23 @@
       </section>
       
       <h2>Questão E</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for perfil in usuarios_com_website_especifico %}
+            <li>{{ perfil.user }} ({{ perfil.website }})</li>
+          {% endfor %}
+        </ol>
+      </section>
       
       <h2>Questão F</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for livro in livros_sem_avaliacoes %}
+            <li>{{ livro.titulo }}</li>
+          {% endfor %}
+          <li>livros_sem_avaliacoes = Book.objects.filter(reviews__rating__isnull=True)</li>
+        </ol>  
+      </section>
       
       <h2>Questão G</h2>
       <section></section>
