@@ -27,3 +27,9 @@ def query_examples(request):
     }
 
     return render(request, 'core/teste1.html', context)
+
+def respostas_exercicio(request):
+    livros_por_autor = Book.objects.filter(author__name='João Felipe Cardoso')
+    context = { "livros_por_autor": livros_por_autor }
+
+    return render(request, 'core/respostas.html', context)
