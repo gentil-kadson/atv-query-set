@@ -30,6 +30,11 @@ def query_examples(request):
 
 def respostas_exercicio(request):
     livros_por_autor = Book.objects.filter(author__name='João Felipe Cardoso')
-    context = { "livros_por_autor": livros_por_autor }
 
+    livros_com_tag_especifica = Book.objects.filter(tags__name='Ciência')
+
+    authors_with_specific_words_on_biography = Author.objects.filter(bio__icontains='Aliquam')
+
+    context = { "livros_por_autor": livros_por_autor, 
+               "livros_com_tag_especifica": livros_com_tag_especifica, "authors_with_specific_words_on_biography": authors_with_specific_words_on_biography }
     return render(request, 'core/respostas.html', context)

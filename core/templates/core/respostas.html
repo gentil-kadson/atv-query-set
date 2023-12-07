@@ -18,10 +18,23 @@
       </section>
 
       <h2>Questão B</h2>
-      <section></section>
+      <section>
+        <h3>Livros com a tag 'Ciência'</h3>
+        <ol>
+          {% for livro in livros_com_tag_especifica %}
+            <li>{{ livro.title }}</li>
+          {% endfor %}
+        </ol>
+      </section>
 
       <h2>Questão C</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for autor in authors_with_specific_words_on_biography %}
+            <li>{{ autor.name }}: {{ autor.bio }}</li>
+          {% endfor %}
+        </ol>
+      </section>
 
       <h2>Questão D</h2>
       <section></section>
