@@ -65,7 +65,13 @@
       </section>
       
       <h2>Questão G</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for autor in autores_numero_livros_ordem %}
+            <li>{{autor.name}} ({{ autor.qtde_livros }})</li>
+          {% endfor %}
+        </ol>
+      </section>
       
       <h2>Questão H</h2>
       <section></section>

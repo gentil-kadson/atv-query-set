@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Count
 from .models import Book, Author, Tag, Review, Profile
 
 def query_examples(request):
@@ -41,9 +42,13 @@ def respostas_exercicio(request):
 
     livros_sem_avaliacoes = Book.objects.filter(reviews__rating__isnull=True)
 
+    autores_numero_livros_ordem = Author.objects.annotate(qtde_livros=Count('books')).order_by('-qtde_livros')
+
+
     context = { "livros_por_autor": livros_por_autor, 
                "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
                 "livros_com_avaliacoes_altas": livors_com_avaliacoes_altas,
                 "usuarios_com_website_especifico": usuarios_com_website_especifico,
-                "livros_sem_avaliacoes": livros_sem_avaliacoes }
+                "livros_sem_avaliacoes": livros_sem_avaliacoes,
+                 "autores_numero_livros_ordem": autores_numero_livros_ordem }
     return render(request, 'core/respostas.html', context)
