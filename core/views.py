@@ -54,7 +54,6 @@ def respostas_exercicio(request):
     avaliacoes_livro_autor_especifico = Review.objects.filter(book__author__name='Pedro Pires')
 
     livros_com_mais_de_uma_tag = Book.objects.filter(tags__name='Ciência').filter(tags__name='Saúde')
-    print("Olha isso, Beto", livros_com_mais_de_uma_tag)
 
     context = { "livros_por_autor": livros_por_autor, 
                "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
