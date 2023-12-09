@@ -36,7 +36,7 @@ def respostas_exercicio(request):
 
     autores_com_palavra_especifica_bio = Author.objects.filter(bio__icontains='Aliquam')
 
-    livros_com_avaliacoes_altas = Book.objects.filter(reviews__rating__gte=4)
+    livros_com_avaliacoes_altas = Book.objects.only("title").filter(reviews__rating__gte=4).distinct()
 
     usuarios_com_website_especifico = Profile.objects.filter(website='https://www.oliveira.com/')
 
