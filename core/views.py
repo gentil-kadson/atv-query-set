@@ -30,7 +30,7 @@ def query_examples(request):
     return render(request, 'core/teste1.html', context)
 
 def respostas_exercicio(request):
-    livros_por_autor = Book.objects.filter(author__name='João Felipe Cardoso')
+    livros_por_autor = Book.objects.filter(author__name='Pedro Pires')
 
     livros_com_tag_especifica = Book.objects.filter(tags__name='Ciência')
 
@@ -38,7 +38,7 @@ def respostas_exercicio(request):
 
     livors_com_avaliacoes_altas = Book.objects.filter(reviews__rating__gte=4)
 
-    usuarios_com_website_especifico = Profile.objects.filter(website='http://pereira.com/')
+    usuarios_com_website_especifico = Profile.objects.filter(website='https://www.oliveira.com/')
 
     livros_sem_avaliacoes = Book.objects.filter(reviews__rating__isnull=True)
 
@@ -51,7 +51,8 @@ def respostas_exercicio(request):
         if len(palavras) > 150:
             livros_resumo_longo.append({ "title": livro.title, "qtde_palavras": len(palavras) })
 
-    avaliacoes_livro_autor_especifico = Review.objects.filter(book__author__name='João Felipe Cardoso')
+    avaliacoes_livro_autor_especifico = Review.objects.filter(book__author__name='Pedro Pires')
+    print(avaliacoes_livro_autor_especifico)
 
     context = { "livros_por_autor": livros_por_autor, 
                "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
