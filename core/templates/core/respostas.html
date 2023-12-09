@@ -93,7 +93,13 @@
       </section>
       
       <h2>Questão J</h2>
-      <section></section>
+      <section>
+        <ol>
+          {% for livro in livros_com_mais_de_uma_tag %}
+            <li>{{ livro.title }}</li>
+          {% endfor %}
+        </ol>
+      </section>
     </main>
   </body>
 </html>

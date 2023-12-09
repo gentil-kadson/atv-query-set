@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Count
+from django.db.models import Count, Q
 from .models import Book, Author, Tag, Review, Profile
 
 def query_examples(request):
@@ -36,7 +36,7 @@ def respostas_exercicio(request):
 
     autores_com_palavra_especifica_bio = Author.objects.filter(bio__icontains='Aliquam')
 
-    livors_com_avaliacoes_altas = Book.objects.filter(reviews__rating__gte=4)
+    livros_com_avaliacoes_altas = Book.objects.filter(reviews__rating__gte=4)
 
     usuarios_com_website_especifico = Profile.objects.filter(website='https://www.oliveira.com/')
 
@@ -52,14 +52,17 @@ def respostas_exercicio(request):
             livros_resumo_longo.append({ "title": livro.title, "qtde_palavras": len(palavras) })
 
     avaliacoes_livro_autor_especifico = Review.objects.filter(book__author__name='Pedro Pires')
-    print(avaliacoes_livro_autor_especifico)
+
+    livros_com_mais_de_uma_tag = Book.objects.filter(tags__name='Ciência').filter(tags__name='Saúde')
+    print("Olha isso, Beto", livros_com_mais_de_uma_tag)
 
     context = { "livros_por_autor": livros_por_autor, 
                "livros_com_tag_especifica": livros_com_tag_especifica, "autores_com_palavra_especifica_bio": autores_com_palavra_especifica_bio,
-                "livros_com_avaliacoes_altas": livors_com_avaliacoes_altas,
+                "livros_com_avaliacoes_altas": livros_com_avaliacoes_altas,
                 "usuarios_com_website_especifico": usuarios_com_website_especifico,
                 "livros_sem_avaliacoes": livros_sem_avaliacoes,
                  "autores_numero_livros_ordem": autores_numero_livros_ordem,
                   "livros_resumo_longo": livros_resumo_longo,
-                   "avaliacoes_livro_autor_especifico": avaliacoes_livro_autor_especifico }
+                   "avaliacoes_livro_autor_especifico": avaliacoes_livro_autor_especifico,
+                    "livros_com_mais_de_uma_tag": livros_com_mais_de_uma_tag }
     return render(request, 'core/respostas.html', context)
